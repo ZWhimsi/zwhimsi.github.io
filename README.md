@@ -19,9 +19,3 @@ Welcome to my personal investment website, where I share my background, degrees,
 - **Planning**: `/planning/`
 - **Daily Lessons**: `/lessons/`
 
-## Setup Instructions
-
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/username/username.github.io.git
-   cd username.github.io
