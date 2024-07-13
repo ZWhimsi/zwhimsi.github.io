@@ -5,39 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ page.title }}</title>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  <style>
+    body { display: none; } /* Hide the body initially to avoid flash */
+  </style>
 </head>
 <body>
   <div id="background-container"></div>
-  <header>
+  <div id="sidebar">
     <nav>
       <ul>
         <li><a href="{{ '/' | relative_url }}">Welcome</a></li>
         <li><a href="{{ '/portfolio/' | relative_url }}">Portfolio</a></li>
         <li><a href="{{ '/planning/' | relative_url }}">Planning</a></li>
-        <li><a href="{{ '/education/' | relative_url }}">Educationnal Content</a></li>
+        <li><a href="{{ '/education/' | relative_url }}">Educational Content</a></li>
       </ul>
     </nav>
-  </header>
-  <main>
-    {% if page.is_welcome_page %}
-      <section class="welcome">
-        <h1>Welcome to Our Website</h1>
-        <p>{{ content }}</p>
-    {% else %}
-      {{ content }}
-    {% endif %}
-  </main>
-  <footer>
     <nav>
       <ul>
         <li><a href="{{ '/faq/' | relative_url }}">FAQ</a></li>
         <li><a href="{{ '/about/' | relative_url }}">About</a></li>
       </ul>
     </nav>
-  </footer>
+  </div>
+  <button id="menu-toggle" class="menu-toggle"></button>
+  <main>
+    <h1>{{ page.title }}</h1>
+    {% if page.is_welcome_page %}
+      <section class="welcome">
+        <p>{{ content }}</p>
+      </section>
+    {% else %}
+      <section class="content">
+        {{ content }}
+      </section>
+    {% endif %}
+  </main>
+  <footer></footer>
   <button id="toggle-mode"></button>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <script src="/assets/js/fluid-background.js"></script>
   <script src="/assets/js/toggle-mode.js"></script>
+  <script src="/assets/js/sidebar-toggle.js"></script>
+  <script>
+    // Ensure the body is shown only after the scripts have run
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.style.display = 'block';
+    });
+  </script>
 </body>
 </html>
