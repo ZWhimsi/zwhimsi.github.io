@@ -27,7 +27,10 @@
       </ul>
     </nav>
   </div>
-  <button id="menu-toggle" class="menu-toggle"></button>
+  <button id="menu-toggle" class="menu-toggle">
+    <span class="arrow">→</span>
+    <span class="menu-label">Menu</span>
+  </button>
   <main>
     <h1>{{ page.title }}</h1>
     {% if page.is_welcome_page %}
@@ -43,9 +46,9 @@
   <footer></footer>
   <button id="toggle-mode"></button>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="/assets/js/fluid-background.js"></script>
-  <script src="/assets/js/toggle-mode.js"></script>
-  <script src="/assets/js/sidebar-toggle.js"></script>
+  <script src="{{ '/assets/js/fluid-background.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/toggle-mode.js' | relative_url }}"></script>
+  <script src="{{ '/assets/js/sidebar-toggle.js' | relative_url }}"></script>
   <script>
     // Ensure the body is shown only after the scripts have run
     document.addEventListener('DOMContentLoaded', function() {

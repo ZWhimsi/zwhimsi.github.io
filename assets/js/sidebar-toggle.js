@@ -1,3 +1,8 @@
-document.getElementById('menu-toggle').addEventListener('click', function() {
-    document.body.classList.toggle('sidebar-open');
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menu-toggle');
+    const body = document.body;
+
+    menuToggle.addEventListener('click', function() {
+        body.classList.toggle('sidebar-open');
+    });
 });
