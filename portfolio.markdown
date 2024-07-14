@@ -10,7 +10,7 @@ Below are the logos of the companies I have invested in. Hover over each logo to
 
 <div class="portfolio-container">
   <a href="company1.html" class="portfolio-item">
-    <img src="../assets/images/companies-logo/nvidia.png" alt="Company 1" />
+    <img src="../assets/images/companies-logo/nvidia.jpg" alt="Company 1" />
     <div class="description">Company 1: Leading tech innovator.</div>
   </a>
   <a href="company2.html" class="portfolio-item">
@@ -30,7 +30,7 @@ Below are the logos of the companies I have invested in. Hover over each logo to
     <div class="description">Company 5: Leading tech innovator.</div>
   </a>
    <a href="company6.html" class="portfolio-item">
-    <img src="../assets/images/companies-logo/tsmc.png" alt="Company 6" />
+    <img src="../assets/images/companies-logo/tsmc.jpg" alt="Company 6" />
     <div class="description">Company 6: Leading tech innovator.</div>
   </a>
    <a href="company7.html" class="portfolio-item">
@@ -40,5 +40,13 @@ Below are the logos of the companies I have invested in. Hover over each logo to
    <a href="company8.html" class="portfolio-item">
     <img src="../assets/images/companies-logo/amazon.jpg" alt="Company 8" />
     <div class="description">Company 8: Leading tech innovator.</div>
+  </a>
+  <a href="company9.html" class="portfolio-item">
+    <img src="../assets/images/companies-logo/gambling.jpg" alt="Company 9" />
+    <div class="description">Company 9: Leading tech innovator.</div>
+  </a>
+  <a href="company10.html" class="portfolio-item">
+    <img src="../assets/images/companies-logo/google.jpg" alt="Company 10" />
+    <div class="description">Company 10: Leading tech innovator.</div>
   </a>
 </div>

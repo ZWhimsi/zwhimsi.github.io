@@ -16,6 +16,11 @@ body, html {
   width: 100%;
   height: 100%;
   z-index: -1;
+  background: linear-gradient(to right, #ffffff, #f0f0f0);
+}
+
+body.night-mode #background-container {
+  background: linear-gradient(to right, #000000, #36005e);
 }
 
 #sidebar {
@@ -165,7 +170,6 @@ main::-webkit-scrollbar-thumb:hover {
 body.night-mode main {
   background: #1f1f1f;
   color: #ffffff;
-  border-radius: 20px;
 }
 
 body.night-mode main p,
@@ -396,15 +400,6 @@ a:hover {
 
 .portfolio-item:hover .description {
   opacity: 1;
-}
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f5f5f5;
-  color: #333;
 }
 
 body.night-mode .portfolio-item .description {
