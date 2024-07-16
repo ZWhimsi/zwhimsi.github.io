@@ -7,6 +7,7 @@ body, html {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   line-height: 1.6;
   transition: background-color 0.3s, color 0.3s;
+  overflow: hidden;
 }
 
 #background-container {
@@ -16,7 +17,10 @@ body, html {
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: linear-gradient(to right, #ffffff, #f0f0f0);
+}
+
+body.day-mode #background-container {
+  background: linear-gradient(to right, #ffffff, #fafafa); /* Slightly brighter background */
 }
 
 body.night-mode #background-container {
@@ -29,7 +33,7 @@ body.night-mode #background-container {
   left: -250px;
   width: 250px;
   height: 100%;
-  background: #f0f0f0;
+  background: #f8f8f8; /* Slightly brighter background for day mode */
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   z-index: 1000;
   transition: left 0.3s ease, background-color 0.3s, color 0.3s;
@@ -38,6 +42,11 @@ body.night-mode #background-container {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
+}
+
+body.night-mode #sidebar {
+  background: #333333;
 }
 
 #sidebar nav ul {
@@ -59,20 +68,37 @@ body.night-mode #background-container {
   text-decoration: none;
   font-size: 1.2em;
   font-weight: bold;
-  transition: color 0.3s, transform 0.3s;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s;
+}
+
+#sidebar nav ul li a:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: #007BFF;
+  transition: width 0.3s ease, left 0.3s ease;
 }
 
 #sidebar nav ul li a:hover {
-  color: #007BFF;
-  transform: scale(1.1);
+  transform: scale(1.05);
+}
+
+#sidebar nav ul li a:hover:after {
+  width: 100%;
+  left: 0;
 }
 
 body.night-mode #sidebar nav ul li a {
   color: #ffffff;
 }
 
-body.night-mode #sidebar nav ul li a:hover {
-  color: #FFA500;
+body.night-mode #sidebar nav ul li a:after {
+  background: #FFA500;
 }
 
 body.sidebar-open #sidebar {
@@ -81,90 +107,83 @@ body.sidebar-open #sidebar {
 
 .menu-toggle {
   position: fixed;
-  top: 50%;
-  left: 0;
+  top: 20px;
+  left: 20px;
   width: 60px;
   height: 60px;
-  background: #f0f0f0;
+  background: linear-gradient(135deg, #c0c0c0 0%, #f8f8f8 100%);
   border: none;
-  border-radius: 0 10px 10px 0;
+  border-radius: 50%;
   cursor: pointer;
   z-index: 1100;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: left 0.3s, background 0.3s;
-  transform: translateY(-50%);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.menu-toggle .arrow {
-  font-size: 28px;
-  color: #000000;
-  transition: transform 0.3s, color 0.3s;
+.menu-toggle .bar {
+  width: 70%;
+  height: 4px;
+  background-color: #7a3daf;
+  margin: 4px 0;
+  transition: all 0.3s ease;
 }
 
-.menu-label {
-  font-size: 14px;
-  color: #000000;
-  transition: color 0.3s;
+.menu-toggle:hover {
+  background: linear-gradient(135deg, #c0c0c0 0%, #f8f8f8 100%);
+  transform: scale(1.1);
 }
 
 body.sidebar-open .menu-toggle {
-  left: 250px;
-}
-
-body.sidebar-open .menu-toggle .arrow {
-  transform: rotate(180deg);
-}
-
-body.sidebar-open .menu-label {
-  color: #000000;
+  left: 270px;
 }
 
 body.night-mode .menu-toggle {
-  background: #1f1f1f;
+  background: linear-gradient(135deg, #444444 0%, #1A1A1A 100%);
 }
 
-body.night-mode .menu-toggle .arrow {
-  color: #ffffff;
+body.night-mode .menu-toggle .bar {
+  background-color: #7a3daf;
 }
 
-body.night-mode .menu-label {
-  color: #ffffff;
-}
-
+/* Main content styling */
 main {
-  max-width: 800px;
-  margin: 2em auto;
+  max-width: 60%; /* Increased width */
+  margin: 5vh auto;
   padding: 2em;
-  background: #f0f0f0;
+  background: #f8f8f8; /* Slightly brighter background for day mode */
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   color: #333333;
   border-radius: 20px;
   overflow-y: auto;
-  max-height: calc(100% - 4em);
-  transition: background-color 0.3s, color 0.3s, margin-left 0.3s, padding 0.3s;
-  position: relative;
+  height: 70vh; /* Reduced height */
+  transition: background-color 0.3s, color 0.3s, left 0.3s;
+  animation: slideInFromRight 0.5s ease-in-out; /* Slide-in animation */
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+body.sidebar-open main {
+  left: calc(50% + 125px);
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    left: 100%;
+  }
+  to {
+    opacity: 1;
+    left: 50%;
+  }
 }
 
 main::-webkit-scrollbar {
-  width: 10px;
-}
-
-main::-webkit-scrollbar-track {
-  background: #f0f0f0;
-  border-radius: 10px;
-}
-
-main::-webkit-scrollbar-thumb {
-  background: #c0c0c0;
-  border-radius: 10px;
-  border: 2px solid #f0f0f0;
-}
-
-main::-webkit-scrollbar-thumb:hover {
-  background: #a0a0a0;
+  display: none; /* Hide scrollbar */
 }
 
 body.night-mode main {
@@ -210,37 +229,33 @@ body.night-mode main::-webkit-scrollbar-thumb:hover {
   background: #666666;
 }
 
-body.sidebar-open main {
-  margin-left: calc((100% - 250px - 800px) / 2 + 250px);
-}
-
 footer {
-  padding: 1em 0;
+  padding: 0.5em 0;
   text-align: center;
   position: fixed;
   bottom: 0;
-  width: 100%;
+  width: 60%; /* Same width as main */
+  background: transparent; /* No background */
   color: #333333;
-  transition: background-color 0.3s, color 0.3s;
+  transition: color 0.3s;
+  font-size: 0.8em;
+  border-top: none; /* Remove the top border */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-body.night-mode {
-  background-color: #121212;
-  color: #ffffff;
-}
-
-body.night-mode #sidebar {
-  background: #1f1f1f;
+body.sidebar-open footer {
+  left: calc(50% + 125px);
+  transform: translateX(-50%);
 }
 
 body.night-mode footer {
-  background: transparent;
   color: #ffffff;
 }
 
 #toggle-mode {
   position: fixed;
-  bottom: 20px;
+  top: 20px;
   right: 20px;
   width: 50px;
   height: 50px;
